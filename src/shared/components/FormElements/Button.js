@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Button.css';
 
-const Button = props => {
+const Button = (props) => {
   if (props.href) {
     return (
       <a

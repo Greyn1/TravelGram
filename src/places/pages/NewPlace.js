@@ -52,7 +52,7 @@ const NewPlace = () => {
         });
     }, []);
 
-    const placeSubmitHandler = event => {
+    const placeSubmitHandler = (event) => {
         event.preventDefault();
         console.log(formState.inputs); // send this to the backend!
       };
@@ -60,6 +60,7 @@ const NewPlace = () => {
     return (
         <form className='place-form' onSubmit={placeSubmitHandler} >
             <Input 
+                id="title"
                 element="input" 
                 type="text" 
                 label="Title"
