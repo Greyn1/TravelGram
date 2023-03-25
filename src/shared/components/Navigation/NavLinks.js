@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import './NavLinks.css';
 
 const NavLinks = () => {
-    const {isLoggedIn} = useContext(AuthContext);
+    const {isLoggedIn, logout} = useContext(AuthContext);
   return (
     <ul className='nav-links' >
         <li>
@@ -26,6 +26,13 @@ const NavLinks = () => {
               !isLoggedIn && (
                   <li>
                       <NavLink to="/auth">Authenticate</NavLink>
+                  </li>
+              )
+          }
+          {
+              isLoggedIn && (
+                  <li>
+                      <button onClick={logout}>Logout</button>
                   </li>
               )
           }
