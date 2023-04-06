@@ -8,9 +8,9 @@ const port = 5000;
 app.use('/api/places', placesRoutes);
 
 app.use((error, req, res, next) => {
-  // if(res.headerSent){
-  //   next(error);
-  // }
+  if(res.headerSent){
+    next(error);
+  }
   res.status(error.code || 500);
   res.json({message: error.message || 'An unknown error occurred'});
   // can also be written using chaining as res.status().json({})
