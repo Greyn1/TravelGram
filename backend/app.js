@@ -4,6 +4,8 @@ import { router as placesRoutes } from './routes/places-routes.js';
 const app = express();
 const port = 5000;
 
+app.use(express.json());
+
 app.use('/api/places', placesRoutes);
 
 app.use((error, req, res, next) => {

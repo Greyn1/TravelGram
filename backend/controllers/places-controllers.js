@@ -1,4 +1,5 @@
 import HttpError from '../models/http-error.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const DUMMY_PLACES = [
     {
@@ -41,6 +42,21 @@ export const getPlaceByUserId = (req, res, next) => {
         );
     }
     res.json({place});
+}
+
+export const createPlace = (req, res, next) => {
+    const {title, description, coordinates, address, creator} = req.body;
+    const createdPlace = {
+        id: uuidv4(),
+        title, 
+        address,
+        description, 
+        creatorId: creator,
+        location: coordinates
+    };
+    DUMMY_PLACES.push(createdPlace);
+    res.status(201).json({place: createdPlace}); 
+    // status of 201 is used as a convention when something new is successfully created.
 }
 
 
