@@ -1,4 +1,5 @@
 import express from 'express';
+import HttpError from './models/http-error.js';
 import { router as placesRoutes } from './routes/places-routes.js';
 
 const app = express();
@@ -8,6 +9,13 @@ app.use(express.json());
 
 app.use('/api/places', placesRoutes);
 
+// middleware to handle unsupported routes
+app.use((req, res, next) => {
+  const error = new HttpError('Could not find this route.', 404);
+  throw error;
+})
+
+//error handling for no such userId or placeId
 app.use((error, req, res, next) => {
   if(res.headersSent){
     next(error);
