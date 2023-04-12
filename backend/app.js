@@ -1,5 +1,6 @@
 import express from 'express';
 import HttpError from './models/http-error.js';
+import { router as usersRoutes } from './routes/users-routes.js';
 import { router as placesRoutes } from './routes/places-routes.js';
 
 const app = express();
@@ -8,6 +9,7 @@ const port = 5000;
 app.use(express.json());
 
 app.use('/api/places', placesRoutes);
+app.use('/api/users', usersRoutes);
 
 // middleware to handle unsupported routes
 app.use((req, res, next) => {
